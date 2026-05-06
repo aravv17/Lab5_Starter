@@ -14,7 +14,7 @@ Queried once at the top of `init()`:
 | Variable | Selector | Purpose |
 |---|---|---|
 | `hornSelect` | `#horn-select` | Horn dropdown |
-| `hornImg` | `#expose img` (first img) | Horn image display |
+| `hornImg` | `#expose > img` (direct child, not the volume icon) | Horn image display |
 | `audio` | `audio` | Audio element |
 | `slider` | `#volume` | Volume range input |
 | `volumeImg` | `#volume-controls img` | Volume icon display |
