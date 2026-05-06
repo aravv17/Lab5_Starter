@@ -32,4 +32,11 @@ function init() {
     volumeImg.src = `assets/icons/volume-level-${level}.svg`;
     volumeImg.alt = `Volume level ${level}`;
   });
+
+  playBtn.addEventListener('click', () => {
+    audio.play();
+    if (hornSelect.value === 'party-horn') {
+      jsConfetti.addConfetti();
+    }
+  });
 }
