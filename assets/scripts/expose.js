@@ -10,4 +10,11 @@ function init() {
   const volumeImg = document.querySelector('#volume-controls > img');
   const playBtn = document.querySelector('#expose button');
   const jsConfetti = new JSConfetti();
+
+  hornSelect.addEventListener('change', () => {
+    const value = hornSelect.value;
+    hornImg.src = `assets/images/${value}.svg`;
+    hornImg.alt = value;
+    audio.src = `assets/audio/${value}.mp3`;
+  });
 }
