@@ -21,4 +21,15 @@ function init() {
 
   fillVoices();
   speechSynthesis.addEventListener('voiceschanged', fillVoices, { once: true });
+
+  talkBtn.addEventListener('click', () => {
+    if (textarea.value.trim() === '' || voiceSelect.value === 'select') return;
+
+    utterance.text = textarea.value;
+    utterance.voice = speechSynthesis.getVoices().find(v => v.name === voiceSelect.value);
+    utterance.onstart = () => { faceImg.src = 'assets/images/smiling-open.png'; };
+    utterance.onend = () => { faceImg.src = 'assets/images/smiling.png'; };
+
+    speechSynthesis.speak(utterance);
+  });
 }
