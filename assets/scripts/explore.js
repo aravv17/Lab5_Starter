@@ -8,10 +8,15 @@ function init() {
   const voiceSelect = document.querySelector('#voice-select');
   const talkBtn = document.querySelector('#explore button');
   const utterance = new SpeechSynthesisUtterance();
+  let voices = [];
+
+  utterance.onstart = () => { faceImg.src = 'assets/images/smiling-open.png'; };
+  utterance.onend = () => { faceImg.src = 'assets/images/smiling.png'; };
 
   const fillVoices = () => {
+    voices = speechSynthesis.getVoices();
     voiceSelect.innerHTML = '<option value="select" disabled selected>Select Voice:</option>';
-    speechSynthesis.getVoices().forEach(voice => {
+    voices.forEach(voice => {
       const option = document.createElement('option');
       option.value = voice.name;
       option.textContent = voice.name;
@@ -24,11 +29,10 @@ function init() {
 
   talkBtn.addEventListener('click', () => {
     if (textarea.value.trim() === '' || voiceSelect.value === 'select') return;
+    if (speechSynthesis.speaking) return;
 
     utterance.text = textarea.value;
-    utterance.voice = speechSynthesis.getVoices().find(v => v.name === voiceSelect.value);
-    utterance.onstart = () => { faceImg.src = 'assets/images/smiling-open.png'; };
-    utterance.onend = () => { faceImg.src = 'assets/images/smiling.png'; };
+    utterance.voice = voices.find(v => v.name === voiceSelect.value);
 
     speechSynthesis.speak(utterance);
   });
