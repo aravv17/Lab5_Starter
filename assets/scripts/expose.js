@@ -34,9 +34,12 @@ function init() {
   });
 
   playBtn.addEventListener('click', () => {
-    audio.play();
+    if (hornSelect.value === 'select') return;
+    audio.play().catch(err => console.error('Playback failed:', err));
     if (hornSelect.value === 'party-horn') {
       jsConfetti.addConfetti();
     }
   });
+
+  audio.volume = Number(slider.value) / 100;
 }
