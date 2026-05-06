@@ -17,4 +17,19 @@ function init() {
     hornImg.alt = value;
     audio.src = `assets/audio/${value}.mp3`;
   });
+
+  slider.addEventListener('input', () => {
+    const vol = Number(slider.value);   // 0–100
+
+    audio.volume = vol / 100;           // HTMLAudioElement.volume is 0.0–1.0
+
+    let level;
+    if (vol === 0)       level = 0;
+    else if (vol < 33)   level = 1;
+    else if (vol < 67)   level = 2;
+    else                 level = 3;
+
+    volumeImg.src = `assets/icons/volume-level-${level}.svg`;
+    volumeImg.alt = `Volume level ${level}`;
+  });
 }
