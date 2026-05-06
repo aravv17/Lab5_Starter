@@ -20,5 +20,5 @@ function init() {
   };
 
   fillVoices();
-  speechSynthesis.addEventListener('voiceschanged', fillVoices);
+  speechSynthesis.addEventListener('voiceschanged', fillVoices, { once: true });
 }
